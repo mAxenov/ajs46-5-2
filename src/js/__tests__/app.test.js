@@ -56,12 +56,6 @@ test.each([
   },
 );
 
-// test('неверный тип персонажа', () => {
-//   function testCharacter() {
-//     new Character("name", "type");
-//   };
-//   expect(testCharacter).toThrowError(new Error('Неверно указан тип персонажа'));
-// });
 test('неверный указано имя персонажа', () => {
   expect(() => {
     new Character('n', 'Daemon');
@@ -74,6 +68,29 @@ test('неверный тип персонажа', () => {
   }).toThrow('Неверно указан тип персонажа');
 });
 
-// test('Ошибка не правильный тип', () => {
-//   expect(new Character("Maxim", "type")).toThrow('Неверно указан тип персонажа');
-// });
+test('уровень + 1', () => {
+  const char = new Character('Maxim', 'Daemon');
+  char.levelUp();
+  expect(char).toEqual({
+    name: 'Maxim',
+    type: 'Daemon',
+    health: 100,
+    level: 2,
+    attack: 12,
+    defence: 48,
+  });
+});
+
+
+test('урон по персонажу', () => {
+  const char = new Character('Maxim', 'Daemon');
+  char.damage(50);
+  expect(char).toEqual({
+    name: 'Maxim',
+    type: 'Daemon',
+    health: 70,
+    level: 1,
+    attack: 10,
+    defence: 40,
+  });
+});
